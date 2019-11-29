@@ -1,0 +1,182 @@
+---
+title: "Untitled"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+```{r}
+library(readr)
+library(data.table)
+data = read.csv("datafest2018-Updated-April12.csv")
+sub = data[0:10000,]
+sub2 = data[10000:20000,]
+
+
+#write.csv(sub2, "sub2.csv")
+
+sub = read.csv("sub.csv")
+#sub <- fread("sub_wangzheng.csv",header = TRUE)
+sub2 <- fread("sub2.csv",header = TRUE)
+```
+
+```{r}
+sub.nona <- sub[!is.na(sub$industry),]
+wordlist<-c()
+temp<-c()
+sub.nona$industry = as.character(sub.nona$industry)
+for (i in 1:(dim(sub.nona)[1])){
+  temp <- unlist(strsplit(sub.nona$industry[i],","))
+  wordlist <- c(wordlist,temp)
+}
+```
+
+
+```{r}
+#for rows, with industry dictionary
+library("dplyr")
+industry_list<-unique(wordlist)
+#temp<-industry_list[1]
+#industry_list[1]<-industry_list[25]
+#industry_list[25]<-temp
+n_i<-length(industry_list)
+industry_dict<-c()
+for(i in 1:n_i){
+  industry_dict[industry_list[i]]=i
+}
+
+
+```
+
+
+
+
+```{r}
+
+sub.withtitle <- sub[!is.na(sub$normTitle),]
+sub.withtitle$normTitle = as.character(sub.withtitle$normTitle)
+title_list<-c()
+temp<-c()
+for (i in 1:(dim(sub.withtitle)[1])){
+  temp <- unlist(strsplit(sub.withtitle$normTitle[i]," "))
+  title_list <- c(title_list,temp)
+}
+title_list<-unique(title_list)
+```
+
+
+
+
+```{r}
+#for columns, with title dictionary
+n_w<-length(title_list)
+title_dict<-c()
+for(i in 1:n_w){
+  title_dict[title_list[i]]=i
+}
+```
+
+
+```{r}
+sub_withboth<-sub[which(!is.na(sub$industry)&!is.na(sub$normTitle)),]
+sub_withboth$normTitle = as.character(sub_withboth$normTitle)
+sub_withboth$industry = as.character(sub_withboth$industry)
+
+
+test_index<-which(!is.na(sub$industry)&!is.na(sub$normTitle))
+industry_word<-matrix(rep(0,n_i*n_w),nrow = n_i)
+for(i in 1:nrow(sub_withboth)){
+  row_ind<-unlist(strsplit(sub_withboth$industry[i],","))
+  #it is a vector of row number
+  row_word<-unlist(strsplit(sub_withboth$normTitle[i]," "))
+  for (row in row_ind) {
+    for(column in row_word){
+      industry_word[industry_dict[row],title_dict[column]]=industry_word[industry_dict[row],title_dict[column]]+1
+    }
+  }
+}
+
+#for(i in 1:n_i){
+  #row_sum<-sum(industry_word[i,])
+  #for(j in 1:n_w){
+    #industry_word[i,j]=industry_word[i,j]/row_sum
+  #}
+#}
+
+```
+
+
+```{r}
+
+wordmatrix <- function(test_title) {
+  m_row<-length(test_title)
+  target_matrix<-matrix(rep(0,m_row*n_w),nrow = m_row)
+  for(i in 1:m_row){
+    row_word<-unlist(strsplit(test_title[i]," "))
+    for(column in row_word){
+      target_matrix[i,title_dict[column]]=1
+    }
+  }
+  return(target_matrix)
+}
+
+
+find_industry<-function(industry_word,word_vector){
+  result_vector<-industry_word%*%word_vector
+  return(industry_list[which.max(result_vector)])
+}
+
+
+vector_find_industry<-function(industry_word,test_title){
+  result_vector<-c()
+  m_row<-dim(wordmatrix(test_title))[1]
+  for(i in 1:m_row){
+    word_vector<-wordmatrix(test_title)[i,]
+    result_vector[i]<-find_industry(industry_word,word_vector)
+  }
+  return(result_vector)
+}
+
+```
+
+
+
+
+
+
+
+```{r}
+testsize<-200
+#test_index<-which(!is.na(sub$industry)&!is.na(sub$normTitle))[1:testsize]
+#test_title<-sub$normTitle[test_index]
+#test_ind<-sub$industry[test_index]
+#result_vector<-vector_find_industry(industry_word,test_title)
+test_index<-which(!is.na(sub2$industry)&!is.na(sub2$normTitle))[1:testsize]
+#test_index<- sample(which(!is.na(sub2$industry)&!is.na(sub2$normTitle)) ,testsize,replace = FALSE)
+test_title<-sub2$normTitle[test_index]
+test_title = as.character(test_title)
+test_ind<-sub2$industry[test_index]
+test_ind = as.character(test_ind)
+
+result_vector<-vector_find_industry(industry_word,test_title)
+j<-0
+for(i in 1:testsize){
+  true_v<-unlist(strsplit(test_ind[i],","))
+  if(result_vector[i] %in% true_v)
+    j=j+1
+}
+
+j
+
+```
+
+
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
