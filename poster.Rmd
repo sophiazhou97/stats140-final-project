@@ -1,11 +1,13 @@
 ---
 title: Support vector machine implemented by RMarkdown 
 author:
-  - name: Chengcheng Xu
+  - name: Qijian Cong
     affil: 1
-  - name: Tuyen Bich Duong
+  - name: Jinyi Li
     affil: 1
-  - name: Fanxing Yu
+  - name: Joy Wang
+    affil: 1
+  - name: Zheng Wang
     affil: 1
   - name: Wenxin Zhou
     affil: 1
