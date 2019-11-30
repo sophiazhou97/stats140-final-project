@@ -1,7 +1,7 @@
 ---
 title: Job Industry Classification
 author:
-  - name: Qijian Cong
+  - name: Jiancong Qi
     affil: 1
   - name: Jinyi Li
     affil: 1
