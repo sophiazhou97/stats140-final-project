@@ -46,9 +46,9 @@ Build model to perform job industry classification
 # Methods
 
 1.Seperate the job postings with industry information into training and testing sets.
-2.
-3.
-
+2.Extra and split every word in the industry and title column with NAs removed
+3.Based on the word list, create an industry and title word dictionary
+4.
 
 
 # Results
