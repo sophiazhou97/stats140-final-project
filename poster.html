@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="generator" content="pandoc" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+<!--
+Font-awesome icons ie github or twitter
+-->
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/brands.css" integrity="sha384-n9+6/aSqa9lBidZMRCQHTHKJscPq6NW4pCQBiMmHdUCvPN8ZOg2zJJTkC7WIezWv" crossorigin="anonymous">
+
+<!--
+Google fonts api stuff
+-->
+<link href='https://fonts.googleapis.com/css?family=Helvetica' rel='stylesheet'>
+
+
+
+<title>Job Industry Classification</title>
+
+
+
+
+
+<style>
+@page {
+size: 45in 38in;
+margin: 0;
+padding: 0;
+}
+body {
+margin: 0;
+font-size: 45px;
+width: 45in;
+height: 38in;
+padding: 0;
+text-align: justify;
+font-family: Helvetica;
+}
+.poster_wrap {
+width: 45in;
+height: 38in;
+padding: 0cm;
+}
+.title_container {
+width: 45in;
+height: calc(38in * 0.15);
+overflow: hidden;
+background-color: #2774AE;
+border: 0 solid #FFD100;
+}
+.logo_left {
+float: left;
+width: 10%;
+height: 100%;
+background-color: #2774AE;
+display: flex;
+align-items: center;
+justify-content: center;
+}
+.logo_right {
+float: right;
+width: 10%;
+height: 100%;
+background-color: #2774AE;
+display: flex;
+align-items: center;
+justify-content: center;
+}
+.poster_title {
+text-align: center;
+position: relative;
+float: left;
+width: 80%;
+height: 100%;
+color: #FFFFFF;
+top: 50%;
+transform: translateY(-50%);
+-webkit-transform: translateY(-50%);
+}
+#title {
+font-family: Helvetica;
+}
+/* unvisited link */
+a:link {
+color: #003B5C;
+}
+.mybreak {
+  break-before: column;
+}
+/* visited link */
+a:visited {
+color: #003B5C;
+}
+
+/* mouse over link */
+a:hover {
+color: #003B5C;
+}
+
+/* selected link */
+a:active {
+color: #003B5C;
+}
+.poster_body {
+-webkit-column-count: 3; /* Chrome, Safari, Opera */
+-moz-column-count: 3; /* Firefox */
+column-count: 3;
+-webkit-column-fill: auto;
+-moz-column-fill: auto;
+column-fill: auto;
+-webkit-column-rule-width: 1mm;
+-moz-column-rule-width: 1mm;
+column-rule-width: 1mm;
+-webkit-column-rule-style: dashed;
+-moz-column-rule-style: dashed;
+column-rule-style: dashed;
+-webkit-column-rule-color: #2774AE;
+-moz-column-rule-color: #2774AE;
+column-rule-color: #2774AE;
+column-gap: 1em;
+padding-left: 0.5em;
+padding-right: 0.5em;
+height: 100%;
+color: #000000
+background-color: #ffffff;
+}
+.poster_title h1 {
+font-size: 75pt;
+margin: 0;
+border: 0;
+font-weight: normal;
+}
+.poster_body_wrap{
+width: calc(45in + 0 + 0);
+height: calc(38in * 0.83);
+padding-top: calc(38in * 0.005);
+padding-bottom: calc(38in * 0.01);
+background-color: #ffffff;
+}
+.poster_title h3 {
+color: #FFD100;
+font-size: 50pt;
+margin: 0;
+border: 0;
+font-weight: normal;
+}
+.poster_title h3 > sup {
+  font-size: 35pt;
+  margin-left: 0.02em;
+}
+.poster_title h5 {
+color: #FFD100;
+font-size: 35pt;
+margin: 0;
+border: 0;
+font-weight: normal;
+}
+img {
+margin-top: 2cm;
+margin-bottom: 0;
+}
+.section {
+  padding: 0.2em;
+}
+.poster_body h1 {
+text-align: center;
+color: #FFFFFF;
+font-size: 65pt;
+border: 2mm solid #2774AE;
+background-color: #2774AE;
+border-radius: 4mm 0mm;
+margin-top: 2mm;
+margin-bottom: 2mm;
+font-weight: normal;
+}
+.poster_body h2 {
+color: #000000;
+font-size: 40pt;
+padding-left: 4mm;
+font-weight: normal;
+}
+.span {
+width: 200%;
+}
+/* center align leaflet map,
+from https://stackoverflow.com/questions/52112119/center-leaflet-in-a-rmarkdown-document */
+.html-widget {
+margin: auto;
+position: sticky;
+margin-top: 2cm;
+margin-bottom: 2cm;
+}
+.leaflet.html-widget.html-widget-static-bound.leaflet-container.leaflet-touch.leaflet-fade-anim.leaflet-grab.leaflet-touch-drag.leaflet-touch-zoom {
+position: sticky;
+width: 100%;
+}
+pre.sourceCode.r {
+background-color: #dddddd40;
+border-radius: 4mm;
+padding: 4mm;
+width: 75%;
+/* align-items: center; */
+margin: auto;
+padding-left: 2cm;
+}
+code.sourceCode.r{
+background-color: transparent;
+font-size: 20pt;
+border-radius: 2mm;
+}
+.caption {
+font-size: 25pt;
+}
+.table caption {
+font-size: 25pt;
+padding-bottom: 3mm;
+
+}
+code {
+font-size: 1em;
+font-family: monospace;
+background-color: #FFD10024;
+color: #2774AE;
+padding: 1.2mm;
+border-radius: 2mm;
+}
+.poster_title code {
+font-size: 1em;
+}
+table {
+font-size: 40px;
+margin: auto;
+border-top: 3px solid #666;
+border-bottom: 3px solid #666;
+}
+table thead th {
+border-bottom: 3px solid #ddd;
+}
+td {
+padding: 8px;
+}
+th {
+padding: 15px;
+}
+caption {
+margin-bottom: 10px;
+}
+.poster_body p {
+margin-right: 4mm;
+margin-left: 4mm;
+margin-top: 6mm;
+margin-bottom: 10mm;
+}
+.poster_body ol {
+margin-right: 4mm;
+margin-left: 4mm;
+}
+#ul {
+margin-right: 4mm;
+margin-left: 4mm;
+}
+.references p {
+font-size: 20pt;
+}
+.orcid img {
+  width: 1em;
+}
+</style>
+</head>
+<body>
+
+
+<div class="poster_wrap">
+<div class="title_container">
+<!-- Left Logo  -->
+<div class="logo_left">
+<img src= 'http://www.firststar.org/wp-content/uploads/2015/02/ucla1.jpg' style="width: 80%">
+</div>
+<!-- Poster Title -->
+<div class= "poster_title">
+<h1 id="title">Job Industry Classification</h1>
+<h3 id="author">Jiancong Qi<sup>1</sup>, Jinyi Li<sup>1</sup>, Joy Wang<sup>1</sup>, Zheng Wang<sup>1</sup>, Wenxin Zhou<sup>1</sup></h3><br>
+<h5 id="affiliation"><sup>1</sup> Department of Statistics, UCLA</h5>
+</div>
+<!-- Right Logo  -->
+<div class="logo_right">
+<img src=./indeed.png style="width: 80%">
+</div>
+</div>
+
+<div class='poster_body_wrap'>
+<div class='poster_body'>
+<div id="introduction" class="section level1">
+<h1>Introduction</h1>
+<p>In this poster, we demonstrate a practice of industry classifications of job openings according to analysis of their descriptions. Among the 14.5 million job records in the Indeed dataset, over 13 million(90%) of them do not have specifications of the industries that the companies belong to. Obviously, most job posters are reluctant to contribute the information, while in reality, job seekers consider the company’s industry an important factor since it determines their future work environment, learning opportunities and career development. Therefore, our team decided to recover this useful information by classifying the job postings into specific industries with machine learning methods. We believe such endeavor allows Indeed to provide more accurate and useful information for users and therefore greatly improves its user experience.</p>
+<div id="objectives" class="section level2">
+<h2>Objectives</h2>
+<p>Build model to perform job industry classification</p>
+</div>
+</div>
+<div id="methods" class="section level1">
+<h1>Methods</h1>
+<div id="prepare-data" class="section level2">
+<h2>Prepare Data</h2>
+<ul>
+<li><p>Down sample to data size to 200000 for performance consideration</p></li>
+<li><p>Extract the rows without “industry” being NA to be our data set (gives about 10000 rows)</p></li>
+<li><p>Separate this dataset with industry information into training and testing sets</p></li>
+</ul>
+</div>
+<div id="cleaning-of-dataset" class="section level2">
+<h2>Cleaning of Dataset</h2>
+<ul>
+<li><p>There could be polymorphism of words such as “engineers” and “teachers”, which should be changed back to their original format such as “engineer” and “teacher”</p></li>
+<li><p>The auxiliary verbs/noun that does not matter too much for the classifier, but complete sentences does use a lot of them. Thus, we decided to remove them</p></li>
+<li><p>Use pretrained natural language models in python library to achieve this</p></li>
+</ul>
+</div>
+<div id="build-corpus" class="section level2">
+<h2>Build Corpus</h2>
+<ul>
+<li><p>Due to limitation in our hardware, we decied to use Bag-of-Word descriptor for each industry cluster <span class="citation">(Gao 2018)</span></p></li>
+<li><p>We construct the same representation of any new job description that is not classified</p></li>
+</ul>
+<p><img src="BoW.png" width="80%" style="display: block; margin: auto;" /></p>
+</div>
+<div id="modeling" class="section level2">
+<h2>Modeling</h2>
+<ul>
+<li>Cosine similarity between the representation of the job description and each each industries are calculated</li>
+</ul>
+<p><span class="math display">\[ \text{similarity}\left(\overrightarrow{V},\overrightarrow{U}\right)=\frac{\overrightarrow{V}\cdot \overrightarrow{U}}{||\overrightarrow{V}|| \cdot||\overrightarrow{U}||} \]</span></p>
+<ul>
+<li><p>Train a ANN model to further process this similarity vector in order to count discrepancies in the count of each industry in the model</p></li>
+<li><p>Test shows that adding this prior belief increase the performance significantly.</p></li>
+</ul>
+</div>
+<div id="summary-of-pipeline" class="section level2">
+<h2>Summary of Pipeline</h2>
+<p><img src="work_flow.png" width="100%" style="display: block; margin: auto;" /></p>
+</div>
+</div>
+<div id="results-conclusion" class="section level1">
+<h1>Results &amp; Conclusion</h1>
+<ul>
+<li><p>Through analyzing the job description text with our model, we successfully classify 47 % of the industry information. In comparison to random guess accuracy of 4%, our model is able to perform &gt; 10 times better</p></li>
+<li><p>Job seekers could find jobs in a specific industry more easily, because they spend less time getting more results and opportunity, thus leading to greater efficiency in job seeking.</p></li>
+<li><p>Indeed could cut cost for manually classifying jobs. When recruiters input their job descriptions, Indeed can auto-suggest industry to recruiters. Because this method takes much less effort for them to provide this information, it increases the possibility that the recruiter put in the right industry category.</p></li>
+<li><p>With the accurate industry classifications, it is easier for researchers to study topics related to job demands regarding different industries. For example, researchers could study which industry has an increasing demand for talent.</p></li>
+</ul>
+</div>
+<div id="next-steps" class="section level1">
+<h1>Next Steps</h1>
+<p>In this section we propose two methods that would significantly improve the accuracy. Unfortunately, the hardware limitation prevented us from using those models.</p>
+<div id="text-convolutional-neural-network" class="section level2">
+<h2>Text Convolutional Neural Network</h2>
+<ul>
+<li><p>Learning the filter <span class="math inline">\(\mathcal{F}\)</span> that the convolution result <span class="math inline">\(\mathcal{F}*\mathcal{T}\)</span> would grasp the “key information” in the sentence</p></li>
+<li><p>Perserve the contexual (or spacial) information of the “key information” in the sentence</p></li>
+</ul>
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-3"></span>
+<img src="text_convolution.png" alt="Text CNN [@WEBSITE:1]" width="80%" />
+<p class="caption">
+Figure 1: Text CNN <span class="citation">(MK 2016)</span>
+</p>
+</div>
+</div>
+<div id="recurrent-neural-network-lstm" class="section level2">
+<h2>Recurrent Neural Network (LSTM)</h2>
+<ul>
+<li><p>Learn how to extract information not only from words themselves but also from the context.</p></li>
+<li><p>Is able to combine all information in the sentence before making decision</p></li>
+</ul>
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-4"></span>
+<img src="RNN.jpg" alt="RNN [@BOOK:1]" width="80%" />
+<p class="caption">
+Figure 2: RNN <span class="citation">(Goldberg 2017)</span>
+</p>
+</div>
+</div>
+</div>
+<div id="reference" class="section level1 unnumbered">
+<h1>Reference</h1>
+<div id="refs" class="references">
+<div id="ref-WEBSITE:2">
+<p>Gao, Y. et. al. 2018. “DataFest 2018.”</p>
+</div>
+<div id="ref-BOOK:1">
+<p>Goldberg, Y. 2017. <em>Neural Network Methods for Natural Language Processing</em>.</p>
+</div>
+<div id="ref-WEBSITE:1">
+<p>MK, A. 2016. “Deep Learning Part 2 – Recurrent Neural Networks (Rnn).”</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+</div>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+var script = document.createElement("script");
+script.type = "text/javascript";
+var src = "true";
+if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+if (location.protocol !== "file:" && /^https?:/.test(src))
+src = src.replace(/^https?:/, '');
+script.src = src;
+document.getElementsByTagName("head")[0].appendChild(script);
+})();
+</script>
+
+
+</body>
+</html>
