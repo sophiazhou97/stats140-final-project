@@ -53,10 +53,40 @@ Build model to perform job industry classification
 
 # Results
 
+* The model was able to achieve a 50% acuracy in prediction industries categories.
+
+* The random guess will produce a accuracy of only 4%
+
+* The model is able to improve the results from random guess by over 10 times
+
 
 # Next Steps
 
+In this section we propose two methods that would significantly improve the accuracy. Unfortunately, the hardware limitation prevented us from using those models.
 
+## Text Convolutional Neural Network
+
+* Learning the filter $\mathcal{F}$ that the convolution result $\mathcal{F}*\mathcal{T}$ would grasp the "key information" in the sentence
+
+* Perserve the contexual (or spacial) information of the "key information" in the sentence
+
+* Pass the convolution result to traditional classifiers such as softmax or SVM would generate prediction
+
+```{r echo=FALSE, out.width='100%'}
+knitr::include_graphics('./text_convolution.png')
+```
+
+## Recurrent Neural Network (LSTM)
+
+* Learn how to extract information not only from words themselves but also from the context.
+
+* Is able to combine all information in the sentence before making decision
+
+* Pass the output from the RNN to traditional classifier would generate prediction
+
+```{r echo=FALSE, out.width='100%'}
+knitr::include_graphics('./RNN.jpg')
+```
 
 # Conclusion
 
